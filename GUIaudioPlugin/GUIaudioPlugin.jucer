@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="DuQltS" name="GUIaudioPlugin" projectType="guiapp" useAppConfig="0"
+              addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1">
+  <MAINGROUP id="OaU80W" name="GUIaudioPlugin">
+    <GROUP id="{277D5D2C-4B0F-AE84-1306-4597590D408A}" name="Source">
+      <FILE id="lVBjTq" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+      <FILE id="nqmWV2" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
+      <FILE id="H1qpxP" name="MainComponent.cpp" compile="1" resource="0"
+            file="Source/MainComponent.cpp"/>
+    </GROUP>
+    <FILE id="nOdfZc" name="Page1.cpp" compile="1" resource="0" file="Source/Page1.cpp"/>
+    <FILE id="EqISm0" name="Page1.h" compile="0" resource="0" file="Source/Page1.h"/>
+    <FILE id="ACc3kr" name="Page2.cpp" compile="1" resource="0" file="Source/Page2.cpp"/>
+    <FILE id="UDSdJa" name="Page2.h" compile="0" resource="0" file="Source/Page2.h"/>
+    <FILE id="gYqskx" name="Page3.cpp" compile="1" resource="0" file="Source/Page3.cpp"/>
+    <FILE id="xdyEbT" name="Page3.h" compile="0" resource="0" file="Source/Page3.h"/>
+    <FILE id="hp6PHk" name="Page4.cpp" compile="1" resource="0" file="Source/Page4.cpp"/>
+    <FILE id="blyj6C" name="Page4.h" compile="0" resource="0" file="Source/Page4.h"/>
+  </MAINGROUP>
+  <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1"/>
+  <EXPORTFORMATS>
+    <LINUX_MAKE targetFolder="Builds/LinuxMakefile">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="GUIaudioPlugin"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="GUIaudioPlugin"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="../JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../JUCE/modules"/>
+        <MODULEPATH id="juce_osc" path="../JUCE/modules"/>
+      </MODULEPATHS>
+    </LINUX_MAKE>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_osc" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+  </MODULES>
+</JUCERPROJECT>
