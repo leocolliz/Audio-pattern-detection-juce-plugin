@@ -11,6 +11,8 @@
 #include <stdio.h>
 #include <string.h>
 
+#include </usr/local/lib/onnxruntime-linux-x64-1.15.0/include/onnxruntime_cxx_api.h>
+
 using namespace juce;
 
 float currNote = 0;
@@ -107,6 +109,7 @@ void OSCrecieverAudioProcessor::prepareToPlay (double sampleRate, int samplesPer
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
+    Ort::AllocatorWithDefaultOptions ort_alloc;
     mms.clear();
 }
 

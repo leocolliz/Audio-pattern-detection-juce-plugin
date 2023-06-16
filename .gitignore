@@ -1,2 +1,4 @@
 GUIaudioPlugin/JuceLibraryCode/
-OSCreciever/JuceLibraryCode/
+OSCreciever/Source/build
+OSCreciever/Source/JUCE
+OSCreciever/Source/JuceLibraryCode
