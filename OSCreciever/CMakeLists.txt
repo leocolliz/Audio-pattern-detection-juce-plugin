@@ -1,10 +1,9 @@
 cmake_minimum_required(VERSION 3.15)
 project(OSCreciever)
 
-#find_package(JUCE CONFIG REQUIRED)
 add_subdirectory(JUCE)
-add_subdirectory(Source)
-add_subdirectory(JuceLibraryCode)
+
+include_directories(/usr/local/lib/onnxruntime-linux-x64-1.15.0/include)
 
 juce_add_plugin(OSCrecieverPlugin
     VERSION 1.0.0                               # Set this if the plugin version is different to the project version
@@ -26,9 +25,26 @@ juce_add_plugin(OSCrecieverPlugin
 juce_generate_juce_header(OSCrecieverPlugin)
 
 target_sources(OSCrecieverPlugin
-    PRIVATE
-        PluginEditor.cpp
-        PluginProcessor.cpp)
+    PRIVATE        
+        JuceLibraryCode/include_juce_audio_basics.cpp
+        JuceLibraryCode/include_juce_audio_devices.cpp
+        JuceLibraryCode/include_juce_audio_formats.cpp
+        JuceLibraryCode/include_juce_audio_plugin_client_ARA.cpp
+        JuceLibraryCode/include_juce_audio_plugin_client_utils.cpp
+        JuceLibraryCode/include_juce_audio_processors.cpp
+        JuceLibraryCode/include_juce_audio_processors_lv2_libs.cpp
+        JuceLibraryCode/include_juce_audio_utils.cpp
+        JuceLibraryCode/include_juce_core.cpp
+        JuceLibraryCode/include_juce_data_structures.cpp
+        JuceLibraryCode/include_juce_events.cpp
+        JuceLibraryCode/include_juce_graphics.cpp
+        JuceLibraryCode/include_juce_gui_basics.cpp
+        JuceLibraryCode/include_juce_gui_extra.cpp
+        JuceLibraryCode/include_juce_osc.cpp
+
+        Source/PluginEditor.cpp
+        Source/PluginProcessor.cpp
+)
 
 target_compile_definitions(OSCrecieverPlugin
     PUBLIC
@@ -56,13 +72,9 @@ target_link_libraries(OSCrecieverPlugin
     PRIVATE
         # AudioPluginData           # If we'd created a binary data target, we'd link to it here
         juce::juce_audio_utils
+        juce::juce_osc
+        ${LIB_NAME} /usr/local/lib/onnxruntime-linux-x64-1.15.0/lib/libonnxruntime.so.1.15.0
     PUBLIC
         juce::juce_recommended_config_flags
         juce::juce_recommended_lto_flags
         juce::juce_recommended_warning_flags)
-
-## list the source files for this directory
-#set(FILES
-#  PluginProcessor.cpp
-#  PluginEditor.cpp
-#  )

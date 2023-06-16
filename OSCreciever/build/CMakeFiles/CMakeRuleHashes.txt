@@ -1,0 +1,2 @@
+# Hashes of file build rules.
+924b6de6acd9b5e0aaee1a8febe928e1 OSCrecieverPlugin_artefacts/JuceLibraryCode/JuceHeader.h
