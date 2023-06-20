@@ -494,33 +494,6 @@ JuceLibraryCode/include_juce_gui_basics.cpp.s:
 	$(MAKE) -f CMakeFiles/GUIaudioPlugin.dir/build.make CMakeFiles/GUIaudioPlugin.dir/JuceLibraryCode/include_juce_gui_basics.cpp.s
 .PHONY : JuceLibraryCode/include_juce_gui_basics.cpp.s
 
-JuceLibraryCode/include_juce_osc.o: JuceLibraryCode/include_juce_osc.cpp.o
-
-.PHONY : JuceLibraryCode/include_juce_osc.o
-
-# target to build an object file
-JuceLibraryCode/include_juce_osc.cpp.o:
-	$(MAKE) -f CMakeFiles/GUIaudioPlugin.dir/build.make CMakeFiles/GUIaudioPlugin.dir/JuceLibraryCode/include_juce_osc.cpp.o
-.PHONY : JuceLibraryCode/include_juce_osc.cpp.o
-
-JuceLibraryCode/include_juce_osc.i: JuceLibraryCode/include_juce_osc.cpp.i
-
-.PHONY : JuceLibraryCode/include_juce_osc.i
-
-# target to preprocess a source file
-JuceLibraryCode/include_juce_osc.cpp.i:
-	$(MAKE) -f CMakeFiles/GUIaudioPlugin.dir/build.make CMakeFiles/GUIaudioPlugin.dir/JuceLibraryCode/include_juce_osc.cpp.i
-.PHONY : JuceLibraryCode/include_juce_osc.cpp.i
-
-JuceLibraryCode/include_juce_osc.s: JuceLibraryCode/include_juce_osc.cpp.s
-
-.PHONY : JuceLibraryCode/include_juce_osc.s
-
-# target to generate assembly for a file
-JuceLibraryCode/include_juce_osc.cpp.s:
-	$(MAKE) -f CMakeFiles/GUIaudioPlugin.dir/build.make CMakeFiles/GUIaudioPlugin.dir/JuceLibraryCode/include_juce_osc.cpp.s
-.PHONY : JuceLibraryCode/include_juce_osc.cpp.s
-
 Source/Main.o: Source/Main.cpp.o
 
 .PHONY : Source/Main.o
@@ -732,9 +705,6 @@ help:
 	@echo "... JuceLibraryCode/include_juce_gui_basics.o"
 	@echo "... JuceLibraryCode/include_juce_gui_basics.i"
 	@echo "... JuceLibraryCode/include_juce_gui_basics.s"
-	@echo "... JuceLibraryCode/include_juce_osc.o"
-	@echo "... JuceLibraryCode/include_juce_osc.i"
-	@echo "... JuceLibraryCode/include_juce_osc.s"
 	@echo "... Source/Main.o"
 	@echo "... Source/Main.i"
 	@echo "... Source/Main.s"

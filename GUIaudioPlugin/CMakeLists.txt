@@ -38,7 +38,8 @@ target_sources(GUIaudioPlugin
         Source/Page1.cpp
         Source/Page2.cpp
         Source/Page3.cpp
-        Source/Page4.cpp)
+        Source/Page4.cpp
+)
 
 # `target_compile_definitions` adds some preprocessor definitions to our target. In a Projucer
 # project, these might be passed in the 'Preprocessor Definitions' field. JUCE modules also make use

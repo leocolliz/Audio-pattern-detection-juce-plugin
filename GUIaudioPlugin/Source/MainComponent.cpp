@@ -4,8 +4,15 @@
 MainComponent::MainComponent()
 {
     if( sender.connect("127.0.0.1", 8000)){
-        std::cout << "Connected" << std::endl;
+        std::cout << "Connected sender GUI" << std::endl;
     }   
+
+    if(connect(9000)){
+        std::cout << "Connected reciever GUI" << std::endl;
+    }
+
+    addListener(this, "/warning");
+
     //Initial page buttons
 
     enterBtn.setColour(juce::TextButton::buttonColourId, juce::Colours::maroon);
@@ -97,17 +104,23 @@ void MainComponent::labelTextChanged(juce::Label* labelThatHasChanged)
 
 void MainComponent::buttonClicked (juce::Button * button)
 {
+    juce::OSCMessage mex("/juce");
+    mex.addInt32(1);
+    mex.addInt32(0);
+    mex.addString(" ");
+
     //INITIAL PAGE BUTTONS
     if(button==&enterBtn){
         addAndMakeVisible(p1);
 
-        if(!sender.send("/juce", 1, 0 , " ")){
+        if(!sender.send(mex)){
             std::cout << "Cannot send the message" << std::endl;
         }
     }if(button==&playBtn){
         addAndMakeVisible(p4);
 
-        if(!sender.send("/juce", 2, 0 , " ")){
+        mex[0]=2;
+        if(!sender.send(mex)){
             std::cout << "Cannot send the message" << std::endl;
         }
     }
@@ -117,7 +130,9 @@ void MainComponent::buttonClicked (juce::Button * button)
         std::cout << "You can now record your " << inputNum << " patterns" << std::endl;
         addAndMakeVisible(p1.p2);
 
-        if(!sender.send("/juce", 11, inputNum, " ")){
+        mex[0]=11;
+        mex[1]=inputNum;
+        if(!sender.send(mex)){
             std::cout << "Cannot send the message" << std::endl;
         }
 
@@ -131,7 +146,8 @@ void MainComponent::buttonClicked (juce::Button * button)
         std::cout << "Recording..." << std::endl;
         startRec=true;
         
-        if(!sender.send("/juce", 21, 0 , " ")){
+        mex[0]=21;
+        if(!sender.send(mex)){
             std::cout << "Cannot send the message" << std::endl;
         }
 
@@ -146,24 +162,28 @@ void MainComponent::buttonClicked (juce::Button * button)
         addAndMakeVisible(recButton);
         startRec=false;
 
-        if(!sender.send("/juce", 22, 0 , " ")){
+        mex[0]=22;
+        if(!sender.send(mex)){
             std::cout << "Cannot send the message" << std::endl;
         }
 
-        /*if(audioProcessor.recThread.seq->getNumEvents()!=0){      //DA PENSARE
+        if(emptyTrack){      
             addAndMakeVisible(OSClabel);
             addAndMakeVisible(saveButton);
             undoButton->setEnabled(true);
             saveButton->setEnabled(true);
             recButton->setEnabled(false);
-            stopButton->setEnabled(false);   
+            stopButton->setEnabled(false);
+            emptyTrack=false; 
         }else{
             std::cerr << "Empty track recorded!" << std::endl;
-        }*/
+        }
 
     }if(button==undoButton){
         inputNum++;
-        if(!sender.send("/juce", 23, 0 , " ")){
+
+        mex[0]=23;
+        if(!sender.send(mex)){
             std::cout << "Cannot send the message" << std::endl;
         }
         OSClabel->setVisible(false);
@@ -182,7 +202,9 @@ void MainComponent::buttonClicked (juce::Button * button)
                 addAndMakeVisible(p1.p2.p3);
             }
 
-            if(!sender.send("/juce", 24, 0, inputCommand)){
+            mex[0]=24;
+            mex[2]=inputCommand;
+            if(!sender.send(mex)){
                 std::cout << "Cannot send the message" << std::endl;
             } 
 
@@ -196,11 +218,17 @@ void MainComponent::buttonClicked (juce::Button * button)
 
     //PAGE 3 BUTTONS
     if(button==trainButton){
-
+        std::cout << "ciao" << std::endl;
     }
 
     //PAGE 4 BUTTONS
     if(button==goButton){
 
+    }
+}
+
+void MainComponent::oscMessageReceived(const juce::OSCMessage &message){
+    if(message.size()==1 && message[0].isInt32()){
+        emptyTrack=true;
     }
 }

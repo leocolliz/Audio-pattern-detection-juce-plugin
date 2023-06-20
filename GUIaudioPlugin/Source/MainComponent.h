@@ -9,7 +9,7 @@
     This component lives inside our window, and this is where you should put all
     your controls and content.
 */
-class MainComponent  : public juce::Component, public juce::Label::Listener, public juce::Button::Listener
+class MainComponent  : public juce::Component, public juce::Label::Listener, public juce::Button::Listener, public juce::OSCReceiver, public juce::OSCReceiver::ListenerWithOSCAddress<juce::OSCReceiver::RealtimeCallback>
 {
 public:
     //==============================================================================
@@ -51,7 +51,9 @@ public:
     void buttonClicked(juce::Button * button) override;
 
     juce::OSCSender sender;
+    bool emptyTrack = false;
 
+    void oscMessageReceived (const juce::OSCMessage &message) override;
 private:
     //==============================================================================
     // Your private member variables go here...

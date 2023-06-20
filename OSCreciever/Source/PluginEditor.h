@@ -14,7 +14,7 @@
 //==============================================================================
 /**
 */
-class OSCrecieverAudioProcessorEditor  : public juce::AudioProcessorEditor, public juce::OSCReceiver, public juce::OSCReceiver::ListenerWithOSCAddress<juce::OSCReceiver::RealtimeCallback> //public juce::Label::Listener, public juce::Button::Listener
+class OSCrecieverAudioProcessorEditor  : public juce::AudioProcessorEditor, public juce::OSCReceiver, public juce::OSCReceiver::ListenerWithOSCAddress<juce::OSCReceiver::RealtimeCallback>
 {
 public:
     OSCrecieverAudioProcessorEditor (OSCrecieverAudioProcessor&);
@@ -33,6 +33,7 @@ private:
     juce::String inputCommand;
 
     void oscMessageReceived (const juce::OSCMessage &message) override;
+    juce::OSCSender sender;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (OSCrecieverAudioProcessorEditor)
 };
