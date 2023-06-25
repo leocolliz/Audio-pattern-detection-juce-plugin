@@ -151,12 +151,12 @@ JUCE/modules/clean:
 CMakeFiles/GUIaudioPlugin.dir/all:
 	$(MAKE) -f CMakeFiles/GUIaudioPlugin.dir/build.make CMakeFiles/GUIaudioPlugin.dir/depend
 	$(MAKE) -f CMakeFiles/GUIaudioPlugin.dir/build.make CMakeFiles/GUIaudioPlugin.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20 "Built target GUIaudioPlugin"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21 "Built target GUIaudioPlugin"
 .PHONY : CMakeFiles/GUIaudioPlugin.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/GUIaudioPlugin.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/build/CMakeFiles 20
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/build/CMakeFiles 21
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/GUIaudioPlugin.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/build/CMakeFiles 0
 .PHONY : CMakeFiles/GUIaudioPlugin.dir/rule

@@ -16,12 +16,20 @@ Page1::Page1()
 {
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
+
+    seshLabel.setEditable(true);
+    seshLabel.setColour(juce::Label::backgroundColourId, juce::Colours::black);
+    seshLabel.setJustificationType(juce::Justification::centred);
     
+    addAndMakeVisible(seshLabel);
+
+    titleLabel.setFont(16.0f);
+    titleLabel.setText("Number of patterns:", juce::dontSendNotification);
+    titleLabel.attachToComponent(&patLabel, true);
+
     patLabel.setEditable(true);
     patLabel.setColour(juce::Label::backgroundColourId, juce::Colours::black);
     patLabel.setJustificationType(juce::Justification::centred);
-    
-    addAndMakeVisible(patLabel);
     
     confBtn.setColour(juce::TextButton::buttonColourId, juce::Colours::maroon);
     confBtn.setButtonText("Confirm");
@@ -42,8 +50,8 @@ void Page1::paint (juce::Graphics& g)
     g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));   // clear the background
     auto area = getLocalBounds();
     g.setColour (juce::Colours::white);
-    g.setFont (14.0f);
-    g.drawText ("Enter the number of patterns you want to record", area.getCentreX()-150, area.getCentreY()-50, 300, 30, juce::Justification::centred, true);
+    g.setFont (16.0f);
+    g.drawText ("Enter session name", area.getCentreX()-150, area.getCentreY()-80, 300, 30, juce::Justification::centred, true);
 }
 
 void Page1::resized()
@@ -52,7 +60,8 @@ void Page1::resized()
     // components that your component contains..
     auto area = getLocalBounds();
     
-    patLabel.setBounds(area.getCentreX()-20, area.getCentreY()-15, 40, 30);
-    confBtn.setBounds(area.getCentreX()-40,area.getCentreY()+40,80,30);
+    seshLabel.setBounds(area.getCentreX()-50, area.getCentreY()-50, 100, 30);
+    patLabel.setBounds(area.getCentreX()-20, area.getCentreY(), 40, 30);
+    confBtn.setBounds(area.getCentreX()-40,area.getCentreY()+60,80,30);
     p2.setBounds(area);
 }

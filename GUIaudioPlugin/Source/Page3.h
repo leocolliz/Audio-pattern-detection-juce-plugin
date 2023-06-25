@@ -24,7 +24,8 @@ public:
     void paint (juce::Graphics&) override;
     void resized() override;
 
-    juce::Label modelLabel;
+    juce::String* seshName;
+    
     juce::TextButton trainBtn;
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Page3)

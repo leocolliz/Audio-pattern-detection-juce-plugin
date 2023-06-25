@@ -254,17 +254,3 @@ void OSCrecieverAudioProcessor::recordingThread::record(){
         index++;
     }
 }
-
-Io      21,80
-Giuse   16          
-Alex    21,60       14+
-Leo3    17,50       
-Leo     25          26,10
-Sara    19,80       18,30
-Marco   
-Edo     22          21,20
-Berry   28,90       27,90
-Gino    
-Max     
-
-contanti

@@ -1,15 +1,14 @@
 #pragma once
 
 #include <JuceHeader.h>
-#include "Page1.h"
-#include "Page4.h"
+#include "Page0.h"
 
 //==============================================================================
 /*
     This component lives inside our window, and this is where you should put all
     your controls and content.
 */
-class MainComponent  : public juce::Component, public juce::Label::Listener, public juce::Button::Listener, public juce::OSCReceiver, public juce::OSCReceiver::ListenerWithOSCAddress<juce::OSCReceiver::RealtimeCallback>
+class MainComponent  : public juce::Component, public juce::Label::Listener, public juce::Button::Listener, public juce::ComboBox::Listener, public juce::OSCReceiver, public juce::OSCReceiver::ListenerWithOSCAddress<juce::OSCReceiver::RealtimeCallback>
 {
 public:
     //==============================================================================
@@ -19,14 +18,17 @@ public:
     //==============================================================================
     void paint (juce::Graphics&) override;
     void resized() override;
-
-    juce::TextButton enterBtn;
-    juce::TextButton playBtn;
+    
+    //Page 0 
+    Page0 p0;
+    juce::TextButton* createButton;
+    juce::TextButton* openButton;
 
     //Page 1
-    Page1 p1;
+    juce::Label* sessionLabel;
     juce::Label* patternLabel;
     juce::TextButton* confButton;
+    juce::String sessionName;
     int inputNum;
 
     //Page 2
@@ -39,16 +41,16 @@ public:
     bool startRec;
 
     //Page 3
-    juce::Label* modelNameLabel;
     juce::TextButton* trainButton;
 
     //Page 4
-    Page4 p4;
-    juce::Label* modelName;
-    juce::TextButton* goButton;
+    juce::ComboBox* sessionBox;
+    juce::TextButton* startButton;
+    juce::TextButton* deleteButton;
 
     void labelTextChanged(juce::Label* labelThatHasChanged) override;
     void buttonClicked(juce::Button * button) override;
+    void comboBoxChanged(juce::ComboBox* comboBoxThatHasChanged) override;
 
     juce::OSCSender sender;
     bool emptyTrack = false;

@@ -359,5 +359,5 @@ build/intermediate/Debug/Main_90ebc5c2.o: ../../Source/Main.cpp \
  /home/leo/UNI/tirocinio/JUCE/modules/juce_osc/osc/juce_OSCBundle.h \
  /home/leo/UNI/tirocinio/JUCE/modules/juce_osc/osc/juce_OSCReceiver.h \
  /home/leo/UNI/tirocinio/JUCE/modules/juce_osc/osc/juce_OSCSender.h \
- ../../Source/MainComponent.h ../../Source/Page1.h ../../Source/Page2.h \
- ../../Source/Page3.h ../../Source/Page4.h
+ ../../Source/MainComponent.h ../../Source/Page0.h ../../Source/Page1.h \
+ ../../Source/Page2.h ../../Source/Page3.h ../../Source/Page4.h

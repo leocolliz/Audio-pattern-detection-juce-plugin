@@ -9,6 +9,8 @@
       <FILE id="H1qpxP" name="MainComponent.cpp" compile="1" resource="0"
             file="Source/MainComponent.cpp"/>
     </GROUP>
+    <FILE id="AQq7TD" name="Page0.cpp" compile="1" resource="0" file="Source/Page0.cpp"/>
+    <FILE id="tjRxIg" name="Page0.h" compile="0" resource="0" file="Source/Page0.h"/>
     <FILE id="nOdfZc" name="Page1.cpp" compile="1" resource="0" file="Source/Page1.cpp"/>
     <FILE id="EqISm0" name="Page1.h" compile="0" resource="0" file="Source/Page1.h"/>
     <FILE id="ACc3kr" name="Page2.cpp" compile="1" resource="0" file="Source/Page2.cpp"/>

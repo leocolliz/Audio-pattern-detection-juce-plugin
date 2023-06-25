@@ -126,9 +126,22 @@ CMakeFiles/GUIaudioPlugin.dir/JuceLibraryCode/include_juce_gui_basics.cpp.s: cma
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GUIaudioPlugin.dir/JuceLibraryCode/include_juce_gui_basics.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/JuceLibraryCode/include_juce_gui_basics.cpp -o CMakeFiles/GUIaudioPlugin.dir/JuceLibraryCode/include_juce_gui_basics.cpp.s
 
+CMakeFiles/GUIaudioPlugin.dir/JuceLibraryCode/include_juce_osc.cpp.o: CMakeFiles/GUIaudioPlugin.dir/flags.make
+CMakeFiles/GUIaudioPlugin.dir/JuceLibraryCode/include_juce_osc.cpp.o: ../JuceLibraryCode/include_juce_osc.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/GUIaudioPlugin.dir/JuceLibraryCode/include_juce_osc.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GUIaudioPlugin.dir/JuceLibraryCode/include_juce_osc.cpp.o -c /home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/JuceLibraryCode/include_juce_osc.cpp
+
+CMakeFiles/GUIaudioPlugin.dir/JuceLibraryCode/include_juce_osc.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/GUIaudioPlugin.dir/JuceLibraryCode/include_juce_osc.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/JuceLibraryCode/include_juce_osc.cpp > CMakeFiles/GUIaudioPlugin.dir/JuceLibraryCode/include_juce_osc.cpp.i
+
+CMakeFiles/GUIaudioPlugin.dir/JuceLibraryCode/include_juce_osc.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/GUIaudioPlugin.dir/JuceLibraryCode/include_juce_osc.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/JuceLibraryCode/include_juce_osc.cpp -o CMakeFiles/GUIaudioPlugin.dir/JuceLibraryCode/include_juce_osc.cpp.s
+
 CMakeFiles/GUIaudioPlugin.dir/Source/Main.cpp.o: CMakeFiles/GUIaudioPlugin.dir/flags.make
 CMakeFiles/GUIaudioPlugin.dir/Source/Main.cpp.o: ../Source/Main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/GUIaudioPlugin.dir/Source/Main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/GUIaudioPlugin.dir/Source/Main.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GUIaudioPlugin.dir/Source/Main.cpp.o -c /home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/Source/Main.cpp
 
 CMakeFiles/GUIaudioPlugin.dir/Source/Main.cpp.i: cmake_force
@@ -141,7 +154,7 @@ CMakeFiles/GUIaudioPlugin.dir/Source/Main.cpp.s: cmake_force
 
 CMakeFiles/GUIaudioPlugin.dir/Source/MainComponent.cpp.o: CMakeFiles/GUIaudioPlugin.dir/flags.make
 CMakeFiles/GUIaudioPlugin.dir/Source/MainComponent.cpp.o: ../Source/MainComponent.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/GUIaudioPlugin.dir/Source/MainComponent.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/GUIaudioPlugin.dir/Source/MainComponent.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GUIaudioPlugin.dir/Source/MainComponent.cpp.o -c /home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/Source/MainComponent.cpp
 
 CMakeFiles/GUIaudioPlugin.dir/Source/MainComponent.cpp.i: cmake_force
@@ -154,7 +167,7 @@ CMakeFiles/GUIaudioPlugin.dir/Source/MainComponent.cpp.s: cmake_force
 
 CMakeFiles/GUIaudioPlugin.dir/Source/Page1.cpp.o: CMakeFiles/GUIaudioPlugin.dir/flags.make
 CMakeFiles/GUIaudioPlugin.dir/Source/Page1.cpp.o: ../Source/Page1.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/GUIaudioPlugin.dir/Source/Page1.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/GUIaudioPlugin.dir/Source/Page1.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GUIaudioPlugin.dir/Source/Page1.cpp.o -c /home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/Source/Page1.cpp
 
 CMakeFiles/GUIaudioPlugin.dir/Source/Page1.cpp.i: cmake_force
@@ -167,7 +180,7 @@ CMakeFiles/GUIaudioPlugin.dir/Source/Page1.cpp.s: cmake_force
 
 CMakeFiles/GUIaudioPlugin.dir/Source/Page2.cpp.o: CMakeFiles/GUIaudioPlugin.dir/flags.make
 CMakeFiles/GUIaudioPlugin.dir/Source/Page2.cpp.o: ../Source/Page2.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/GUIaudioPlugin.dir/Source/Page2.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/GUIaudioPlugin.dir/Source/Page2.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GUIaudioPlugin.dir/Source/Page2.cpp.o -c /home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/Source/Page2.cpp
 
 CMakeFiles/GUIaudioPlugin.dir/Source/Page2.cpp.i: cmake_force
@@ -180,7 +193,7 @@ CMakeFiles/GUIaudioPlugin.dir/Source/Page2.cpp.s: cmake_force
 
 CMakeFiles/GUIaudioPlugin.dir/Source/Page3.cpp.o: CMakeFiles/GUIaudioPlugin.dir/flags.make
 CMakeFiles/GUIaudioPlugin.dir/Source/Page3.cpp.o: ../Source/Page3.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/GUIaudioPlugin.dir/Source/Page3.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/GUIaudioPlugin.dir/Source/Page3.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GUIaudioPlugin.dir/Source/Page3.cpp.o -c /home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/Source/Page3.cpp
 
 CMakeFiles/GUIaudioPlugin.dir/Source/Page3.cpp.i: cmake_force
@@ -193,7 +206,7 @@ CMakeFiles/GUIaudioPlugin.dir/Source/Page3.cpp.s: cmake_force
 
 CMakeFiles/GUIaudioPlugin.dir/Source/Page4.cpp.o: CMakeFiles/GUIaudioPlugin.dir/flags.make
 CMakeFiles/GUIaudioPlugin.dir/Source/Page4.cpp.o: ../Source/Page4.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/GUIaudioPlugin.dir/Source/Page4.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/GUIaudioPlugin.dir/Source/Page4.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GUIaudioPlugin.dir/Source/Page4.cpp.o -c /home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/Source/Page4.cpp
 
 CMakeFiles/GUIaudioPlugin.dir/Source/Page4.cpp.i: cmake_force
@@ -206,7 +219,7 @@ CMakeFiles/GUIaudioPlugin.dir/Source/Page4.cpp.s: cmake_force
 
 CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_gui_extra/juce_gui_extra.cpp.o: CMakeFiles/GUIaudioPlugin.dir/flags.make
 CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_gui_extra/juce_gui_extra.cpp.o: ../JUCE/modules/juce_gui_extra/juce_gui_extra.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_gui_extra/juce_gui_extra.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_gui_extra/juce_gui_extra.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_gui_extra/juce_gui_extra.cpp.o -c /home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/JUCE/modules/juce_gui_extra/juce_gui_extra.cpp
 
 CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_gui_extra/juce_gui_extra.cpp.i: cmake_force
@@ -219,7 +232,7 @@ CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_gui_extra/juce_gui_extra.cpp.s: 
 
 CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_gui_basics/juce_gui_basics.cpp.o: CMakeFiles/GUIaudioPlugin.dir/flags.make
 CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_gui_basics/juce_gui_basics.cpp.o: ../JUCE/modules/juce_gui_basics/juce_gui_basics.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_gui_basics/juce_gui_basics.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_gui_basics/juce_gui_basics.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_gui_basics/juce_gui_basics.cpp.o -c /home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/JUCE/modules/juce_gui_basics/juce_gui_basics.cpp
 
 CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_gui_basics/juce_gui_basics.cpp.i: cmake_force
@@ -232,7 +245,7 @@ CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_gui_basics/juce_gui_basics.cpp.s
 
 CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_graphics/juce_graphics.cpp.o: CMakeFiles/GUIaudioPlugin.dir/flags.make
 CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_graphics/juce_graphics.cpp.o: ../JUCE/modules/juce_graphics/juce_graphics.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_graphics/juce_graphics.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_graphics/juce_graphics.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_graphics/juce_graphics.cpp.o -c /home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/JUCE/modules/juce_graphics/juce_graphics.cpp
 
 CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_graphics/juce_graphics.cpp.i: cmake_force
@@ -245,7 +258,7 @@ CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_graphics/juce_graphics.cpp.s: cm
 
 CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_events/juce_events.cpp.o: CMakeFiles/GUIaudioPlugin.dir/flags.make
 CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_events/juce_events.cpp.o: ../JUCE/modules/juce_events/juce_events.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_events/juce_events.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_events/juce_events.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_events/juce_events.cpp.o -c /home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/JUCE/modules/juce_events/juce_events.cpp
 
 CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_events/juce_events.cpp.i: cmake_force
@@ -258,7 +271,7 @@ CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_events/juce_events.cpp.s: cmake_
 
 CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_core/juce_core.cpp.o: CMakeFiles/GUIaudioPlugin.dir/flags.make
 CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_core/juce_core.cpp.o: ../JUCE/modules/juce_core/juce_core.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_core/juce_core.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_core/juce_core.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_core/juce_core.cpp.o -c /home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/JUCE/modules/juce_core/juce_core.cpp
 
 CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_core/juce_core.cpp.i: cmake_force
@@ -271,7 +284,7 @@ CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_core/juce_core.cpp.s: cmake_forc
 
 CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_data_structures/juce_data_structures.cpp.o: CMakeFiles/GUIaudioPlugin.dir/flags.make
 CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_data_structures/juce_data_structures.cpp.o: ../JUCE/modules/juce_data_structures/juce_data_structures.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_data_structures/juce_data_structures.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_data_structures/juce_data_structures.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_data_structures/juce_data_structures.cpp.o -c /home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/JUCE/modules/juce_data_structures/juce_data_structures.cpp
 
 CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_data_structures/juce_data_structures.cpp.i: cmake_force
@@ -284,7 +297,7 @@ CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_data_structures/juce_data_struct
 
 CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_osc/juce_osc.cpp.o: CMakeFiles/GUIaudioPlugin.dir/flags.make
 CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_osc/juce_osc.cpp.o: ../JUCE/modules/juce_osc/juce_osc.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_osc/juce_osc.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_osc/juce_osc.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_osc/juce_osc.cpp.o -c /home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/JUCE/modules/juce_osc/juce_osc.cpp
 
 CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/juce_osc/juce_osc.cpp.i: cmake_force
@@ -302,6 +315,7 @@ GUIaudioPlugin_OBJECTS = \
 "CMakeFiles/GUIaudioPlugin.dir/JuceLibraryCode/include_juce_events.cpp.o" \
 "CMakeFiles/GUIaudioPlugin.dir/JuceLibraryCode/include_juce_graphics.cpp.o" \
 "CMakeFiles/GUIaudioPlugin.dir/JuceLibraryCode/include_juce_gui_basics.cpp.o" \
+"CMakeFiles/GUIaudioPlugin.dir/JuceLibraryCode/include_juce_osc.cpp.o" \
 "CMakeFiles/GUIaudioPlugin.dir/Source/Main.cpp.o" \
 "CMakeFiles/GUIaudioPlugin.dir/Source/MainComponent.cpp.o" \
 "CMakeFiles/GUIaudioPlugin.dir/Source/Page1.cpp.o" \
@@ -324,6 +338,7 @@ GUIaudioPlugin_artefacts/GUIplugin: CMakeFiles/GUIaudioPlugin.dir/JuceLibraryCod
 GUIaudioPlugin_artefacts/GUIplugin: CMakeFiles/GUIaudioPlugin.dir/JuceLibraryCode/include_juce_events.cpp.o
 GUIaudioPlugin_artefacts/GUIplugin: CMakeFiles/GUIaudioPlugin.dir/JuceLibraryCode/include_juce_graphics.cpp.o
 GUIaudioPlugin_artefacts/GUIplugin: CMakeFiles/GUIaudioPlugin.dir/JuceLibraryCode/include_juce_gui_basics.cpp.o
+GUIaudioPlugin_artefacts/GUIplugin: CMakeFiles/GUIaudioPlugin.dir/JuceLibraryCode/include_juce_osc.cpp.o
 GUIaudioPlugin_artefacts/GUIplugin: CMakeFiles/GUIaudioPlugin.dir/Source/Main.cpp.o
 GUIaudioPlugin_artefacts/GUIplugin: CMakeFiles/GUIaudioPlugin.dir/Source/MainComponent.cpp.o
 GUIaudioPlugin_artefacts/GUIplugin: CMakeFiles/GUIaudioPlugin.dir/Source/Page1.cpp.o
@@ -340,7 +355,7 @@ GUIaudioPlugin_artefacts/GUIplugin: CMakeFiles/GUIaudioPlugin.dir/JUCE/modules/j
 GUIaudioPlugin_artefacts/GUIplugin: CMakeFiles/GUIaudioPlugin.dir/build.make
 GUIaudioPlugin_artefacts/GUIplugin: /usr/lib/x86_64-linux-gnu/libfreetype.so
 GUIaudioPlugin_artefacts/GUIplugin: CMakeFiles/GUIaudioPlugin.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Linking CXX executable GUIaudioPlugin_artefacts/GUIplugin"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/GUIaudioPlugin/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Linking CXX executable GUIaudioPlugin_artefacts/GUIplugin"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/GUIaudioPlugin.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

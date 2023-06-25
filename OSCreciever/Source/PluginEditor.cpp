@@ -9,13 +9,16 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
-const int ENTERBTN = 1;
-const int PLAYBTN = 2;
+const int CREATEBTN = 1;
+const int ENTERBTN = 2;
 const int CONFIRMBTN = 11;
 const int RECORDBTN = 21;
 const int STOPBTN = 22;
 const int UNDOBTN = 23;
 const int SAVEBTN = 24;
+const int TRAINBTN = 31;
+const int STARTBTN = 41;
+const int DELETEBTN = 42;
 
 //==============================================================================
 OSCrecieverAudioProcessorEditor::OSCrecieverAudioProcessorEditor (OSCrecieverAudioProcessor& p)
@@ -58,18 +61,39 @@ void OSCrecieverAudioProcessorEditor::resized()
 
 void OSCrecieverAudioProcessorEditor::oscMessageReceived(const juce::OSCMessage &message){
     if(message.size() == 3 && message[1].isInt32()){
-        switch(message[1].getInt32()){
-            case ENTERBTN:
+        switch(message[0].getInt32()){
+            case CREATEBTN:
             {
                 break;
             }
-            case PLAYBTN:
+            case ENTERBTN:
             {
+                juce::OSCMessage mex("/data");
+                auto sessionFile = juce::File::getCurrentWorkingDirectory().getParentDirectory().getParentDirectory().getParentDirectory().getChildFile("metadata.txt");
+                if(sessionFile.existsAsFile()){
+                    juce::FileInputStream inputStream(sessionFile);
+                    inputStream.setPosition(0);
+                    int i = 0;
+                    while(!inputStream.isExhausted()){
+                        mex.addString(inputStream.readNextLine());
+                        i++;
+                    }
+                    if(i==0){
+                        std::cerr << "You have 0 session recorded!" << std::endl;
+                    }
+                    mex.addInt32(1);
+                    if(!sender.send(mex)){
+                        std::cout << "Cannot send the message" << std::endl;
+                    }
+                }
                 break;
             }
             case CONFIRMBTN:
             {
-                inputNum=message[2].getInt32();
+                sessionName=message[2].getString();
+                inputNum=message[1].getInt32();
+                auto sessionFile = juce::File::getCurrentWorkingDirectory().getParentDirectory().getParentDirectory().getParentDirectory().getChildFile("metadata.txt");
+                sessionFile.appendText(sessionName + '\n');
                 break;
             }
             case RECORDBTN:
@@ -88,7 +112,7 @@ void OSCrecieverAudioProcessorEditor::oscMessageReceived(const juce::OSCMessage 
                     audioProcessor.recThread.startThread();
                 }
                 if(audioProcessor.recThread.seq->getNumEvents()==0){
-                    juce::OSCMessage mex("/warning");
+                    juce::OSCMessage mex("/data");
                     mex.addInt32(0);
                     if(!sender.send(mex)){
                         std::cout << "Cannot send the message" << std::endl;
@@ -113,15 +137,47 @@ void OSCrecieverAudioProcessorEditor::oscMessageReceived(const juce::OSCMessage 
             }
             case SAVEBTN:
             {
-                inputCommand = message[4].getString();    
+                inputCommand = message[2].getString();    
                 std::cout << "OSC command " << inputCommand << " saved correctly in OSC.txt" << std::endl;
-                auto OSCfile = juce::File::getCurrentWorkingDirectory().getParentDirectory().getParentDirectory().getParentDirectory().getChildFile("OSC.txt");
+                auto OSCfile = juce::File::getCurrentWorkingDirectory().getParentDirectory().getParentDirectory().getParentDirectory().getChildFile(sessionName+".txt");
                 if(audioProcessor.recThread.index==1){
                     OSCfile.replaceWithText(inputCommand+'\n');
                 }else{
                     OSCfile.appendText(inputCommand+'\n');
                 }
-                std::cout << "OSC command " << inputCommand << " saved correctly in OSC.txt" << std::endl;
+                std::cout << "OSC command " << inputCommand << " saved correctly in " << sessionName << ".txt" << std::endl;
+                break;
+            }
+            case TRAINBTN:
+            {
+                //API CALL FOR TRAINING
+                break;
+            }
+            case STARTBTN:
+            {
+                //INFERENCE CODE
+                break;
+            }
+            case DELETEBTN:
+            {
+                juce::String sessionToDelete = message[2].getString();
+                juce::StringArray text;
+                auto sessionFile = juce::File::getCurrentWorkingDirectory().getParentDirectory().getParentDirectory().getParentDirectory().getChildFile("sessions.txt");
+                if(sessionFile.existsAsFile()){
+                    juce::FileInputStream inputStream(sessionFile);
+                    inputStream.setPosition(0);
+                    while(!inputStream.isExhausted()){
+                        juce::String str = inputStream.readNextLine();
+                        if(str!=sessionToDelete){
+                            text.add(str);
+                        }
+                    }
+                    sessionFile.replaceWithText("");
+                    for(auto sesh : text){
+                        sessionFile.appendText(sesh+'\n');
+                    }
+                }
+                //DELETE MODEL FILE
                 break;
             }
         }

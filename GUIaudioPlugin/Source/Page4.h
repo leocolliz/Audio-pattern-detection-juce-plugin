@@ -24,8 +24,10 @@ public:
     void paint (juce::Graphics&) override;
     void resized() override;
 
-    juce::Label modelLabel;
-    juce::TextButton goBtn;
+    juce::TextButton startBtn;
+    juce::TextButton deleteBtn;
+
+    juce::ComboBox sessionBox;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Page4)

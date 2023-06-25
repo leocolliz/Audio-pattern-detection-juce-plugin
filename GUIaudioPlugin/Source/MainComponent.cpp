@@ -1,4 +1,5 @@
 #include "MainComponent.h"
+#include <unistd.h> 
 
 //==============================================================================
 MainComponent::MainComponent()
@@ -11,36 +12,33 @@ MainComponent::MainComponent()
         std::cout << "Connected reciever GUI" << std::endl;
     }
 
-    addListener(this, "/warning");
+    addListener(this, "/data");
 
-    //Initial page buttons
-
-    enterBtn.setColour(juce::TextButton::buttonColourId, juce::Colours::maroon);
-    enterBtn.setButtonText("Enter patterns");
-    addAndMakeVisible(enterBtn);
-
-    playBtn.setColour(juce::TextButton::buttonColourId, juce::Colours::maroon);
-    playBtn.setButtonText("Play");
-    addAndMakeVisible(playBtn);
+    //Page 0 buttons
     
-    enterBtn.addListener(this);
-    playBtn.addListener(this);
+    createButton=   &(p0.createBtn);
+    openButton  =   &(p0.openBtn);
+
+    createButton->addListener(this);
+    openButton->addListener(this);
 
     //Page 1 buttons
 
-    patternLabel=   &(p1.patLabel);
-    confButton  =   &(p1.confBtn);
+    sessionLabel=   &(p0.p1.seshLabel);
+    patternLabel=   &(p0.p1.patLabel);
+    confButton  =   &(p0.p1.confBtn);
     
+    sessionLabel->addListener(this);
     patternLabel->addListener(this);
     confButton->addListener(this);
 
     //Page 2 buttons
 
-    recButton   =   &(p1.p2.recBtn);
-    stopButton  =   &(p1.p2.stopBtn);
-    undoButton  =   &(p1.p2.undoBtn);
-    OSClabel    =   &(p1.p2.OSCcommandLabel);
-    saveButton  =   &(p1.p2.saveBtn);
+    recButton   =   &(p0.p1.p2.recBtn);
+    stopButton  =   &(p0.p1.p2.stopBtn);
+    undoButton  =   &(p0.p1.p2.undoBtn);
+    OSClabel    =   &(p0.p1.p2.OSCcommandLabel);
+    saveButton  =   &(p0.p1.p2.saveBtn);
     
     recButton->addListener(this);
     stopButton->addListener(this);
@@ -50,17 +48,22 @@ MainComponent::MainComponent()
 
     //Page 3 buttons
 
-    modelNameLabel =&(p1.p2.p3.modelLabel);
-    trainButton =   &(p1.p2.p3.trainBtn);
+    trainButton =   &(p0.p1.p2.p3.trainBtn);
+    p0.p1.p2.p3.seshName = &(sessionName);
 
-    modelNameLabel->addListener(this);
     trainButton->addListener(this);
 
     //Page 4 buttons
 
-    modelName   =   &(p4.modelLabel);
-    goButton    =   &(p4.goBtn);
+    sessionBox  =   &(p0.p4.sessionBox);
+    startButton =   &(p0.p4.startBtn);
+    deleteButton =  &(p0.p4.deleteBtn);
 
+    sessionBox->addListener(this);
+    startButton->addListener(this);
+    deleteButton->addListener(this);
+    
+    addAndMakeVisible(p0);
     setSize (400, 300);
 }
 
@@ -83,16 +86,16 @@ void MainComponent::resized()
     // update their positions.
 
     auto area = getLocalBounds();
-    enterBtn.setBounds(area.getCentreX()-80,area.getCentreY()-100,160,60);
-    playBtn.setBounds(area.getCentreX()-80,area.getCentreY()-30,160,60);
 
-    p1.setBounds(area);
-    p4.setBounds(area);
+    p0.setBounds(area);
 }
 
 void MainComponent::labelTextChanged(juce::Label* labelThatHasChanged)
 {
     //PAGE 1 LABEL
+    if(labelThatHasChanged==sessionLabel){
+        addAndMakeVisible(patternLabel);
+    }
     if(labelThatHasChanged==patternLabel){
         addAndMakeVisible(confButton);
     }
@@ -109,16 +112,17 @@ void MainComponent::buttonClicked (juce::Button * button)
     mex.addInt32(0);
     mex.addString(" ");
 
-    //INITIAL PAGE BUTTONS
-    if(button==&enterBtn){
-        addAndMakeVisible(p1);
+    //PAGE 0 BUTTONS
+    if(button==createButton){
+        addAndMakeVisible(p0.p1);
 
         if(!sender.send(mex)){
             std::cout << "Cannot send the message" << std::endl;
         }
-    }if(button==&playBtn){
-        addAndMakeVisible(p4);
-
+    }if(button==openButton){
+        addAndMakeVisible(p0.p4);
+        startButton->setVisible(false);
+        deleteButton->setVisible(false);
         mex[0]=2;
         if(!sender.send(mex)){
             std::cout << "Cannot send the message" << std::endl;
@@ -126,19 +130,28 @@ void MainComponent::buttonClicked (juce::Button * button)
     }
     //PAGE 1 BUTTONS
     if(button==confButton){
+        sessionName=sessionLabel->getText();
         inputNum = patternLabel->getText().getIntValue();
-        std::cout << "You can now record your " << inputNum << " patterns" << std::endl;
-        addAndMakeVisible(p1.p2);
+        if(!sessionName.isEmpty()&&inputNum<=10){
+            p0.p1.p2.seshName = sessionName;
+            std::cout << "You can now record your " << inputNum << " patterns" << std::endl;
+            addAndMakeVisible(p0.p1.p2);
 
-        mex[0]=11;
-        mex[1]=inputNum;
-        if(!sender.send(mex)){
-            std::cout << "Cannot send the message" << std::endl;
+            mex[0]=11;
+            mex[1]=inputNum;
+            mex[2]=sessionName;
+            if(!sender.send(mex)){
+                std::cout << "Cannot send the message" << std::endl;
+            }
+
+            stopButton->setEnabled(false);
+            undoButton->setEnabled(false);
+            saveButton->setEnabled(false);
+        }if(sessionName.isEmpty()){
+            std::cerr << "Empty session name" << std::endl;
+        }if(inputNum>10){
+            std::cerr << "Max number of patterns is 10" << std::endl;
         }
-
-        stopButton->setEnabled(false);
-        undoButton->setEnabled(false);
-        saveButton->setEnabled(false);
     }
     //PAGE 2 BUTTONS
     if(button==recButton){
@@ -199,7 +212,7 @@ void MainComponent::buttonClicked (juce::Button * button)
                 OSClabel->setVisible(false);
                 saveButton->setVisible(false);
             }else{
-                addAndMakeVisible(p1.p2.p3);
+                addAndMakeVisible(p0.p1.p2.p3);
             }
 
             mex[0]=24;
@@ -218,17 +231,51 @@ void MainComponent::buttonClicked (juce::Button * button)
 
     //PAGE 3 BUTTONS
     if(button==trainButton){
-        std::cout << "ciao" << std::endl;
+        mex[0]=31;
+        if(!sender.send(mex)){
+            std::cout << "Cannot send the message" << std::endl;
+        }
+        trainButton->setEnabled(false);
+        sleep(5);
+        p0.p1.p2.p3.setVisible(false);
+        p0.p1.p2.setVisible(false);
+        p0.p1.setVisible(false);
     }
 
     //PAGE 4 BUTTONS
-    if(button==goButton){
+    if(button==startButton){
+        //start the inference
+    }if(button==deleteButton){
+        mex[0]=42;
+        mex[2]=sessionBox->getText();
+        sessionBox->clear();
+        if(!sender.send(mex)){
+            std::cout << "Cannot send the message" << std::endl;
+        }
+        p0.p4.setVisible(false);
+    }
+}
 
+void MainComponent::comboBoxChanged(juce::ComboBox* comboBoxThatHasChanged){
+    if(comboBoxThatHasChanged==sessionBox){
+        startButton->setVisible(true);
+        deleteButton->setVisible(true);
     }
 }
 
 void MainComponent::oscMessageReceived(const juce::OSCMessage &message){
-    if(message.size()==1 && message[0].isInt32()){
-        emptyTrack=true;
+    if(message[0].isInt32()){
+        if(message[0].getInt32()==0){
+            emptyTrack=true;
+        }if(message[0].getInt32()==1){
+            juce::MessageManagerLock mml;
+            p0.p4.setVisible(false);
+        }
+    }if(message[0].isString()){
+        int i = 0;
+        while(!message[i].isInt32()){
+            sessionBox->addItem(message[i].getString(),i+1);
+            i++;
+        }
     }
 }

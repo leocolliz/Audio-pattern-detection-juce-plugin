@@ -29,6 +29,7 @@ private:
     // access the processor object that created it.
     OSCrecieverAudioProcessor& audioProcessor;
 
+    juce::String sessionName;
     int inputNum;
     juce::String inputCommand;
 

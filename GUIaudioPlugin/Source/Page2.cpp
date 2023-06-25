@@ -35,6 +35,7 @@ Page2::Page2() : recBtn("recButton", juce::Colours::red, juce::Colours::red, juc
 
     addAndMakeVisible(undoBtn);
 
+    titleLabel.setFont(16.0f);
     titleLabel.setText("OSC command:", juce::dontSendNotification);
     titleLabel.attachToComponent(&OSCcommandLabel, true);
 
@@ -60,6 +61,10 @@ void Page2::paint (juce::Graphics& g)
     */
 
     g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));   // clear the background
+    auto area = getLocalBounds();
+    g.setColour (juce::Colours::white);
+    g.setFont (juce::Font("Arial", 18.0f, juce::Font::bold));
+    g.drawText (seshName.toUpperCase(), area.getCentreX()-150, area.getCentreY()-150, 300, 30, juce::Justification::centred, true);
 }
 
 void Page2::resized()
@@ -69,10 +74,10 @@ void Page2::resized()
 
     auto area = getLocalBounds();
     
-    recBtn.setCentrePosition(getWidth()/10+30,getHeight()/6-20);
-    stopBtn.setCentrePosition(getWidth()/10+30,getHeight()/6+40);
-    undoBtn.setBounds(getWidth()-105,getHeight()/6,80,30);
-    OSCcommandLabel.setBounds(area.getCentreX()-80, getHeight()-125, 160, 30);
-    saveBtn.setBounds(area.getCentreX()-40,getHeight()-65,80,30);
+    recBtn.setCentrePosition(getWidth()/10+30,getHeight()/6+20);
+    stopBtn.setCentrePosition(getWidth()/10+30,getHeight()/6+80);
+    undoBtn.setBounds(getWidth()-105,getHeight()/6+40,80,30);
+    OSCcommandLabel.setBounds(area.getCentreX()-80, getHeight()-85, 160, 30);
+    saveBtn.setBounds(area.getCentreX()-40,getHeight()-25,80,30);
     p3.setBounds(area);
 }

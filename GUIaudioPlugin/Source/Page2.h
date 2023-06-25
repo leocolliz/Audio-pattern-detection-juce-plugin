@@ -25,6 +25,8 @@ public:
     void paint (juce::Graphics&) override;
     void resized() override;
 
+    juce::String seshName;
+
     juce::ShapeButton recBtn;
     juce::ShapeButton stopBtn;
     juce::TextButton undoBtn;

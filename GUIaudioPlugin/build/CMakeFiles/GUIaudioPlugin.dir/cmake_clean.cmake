@@ -11,6 +11,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/GUIaudioPlugin.dir/JuceLibraryCode/include_juce_events.cpp.o"
   "CMakeFiles/GUIaudioPlugin.dir/JuceLibraryCode/include_juce_graphics.cpp.o"
   "CMakeFiles/GUIaudioPlugin.dir/JuceLibraryCode/include_juce_gui_basics.cpp.o"
+  "CMakeFiles/GUIaudioPlugin.dir/JuceLibraryCode/include_juce_osc.cpp.o"
   "CMakeFiles/GUIaudioPlugin.dir/Source/Main.cpp.o"
   "CMakeFiles/GUIaudioPlugin.dir/Source/MainComponent.cpp.o"
   "CMakeFiles/GUIaudioPlugin.dir/Source/Page1.cpp.o"

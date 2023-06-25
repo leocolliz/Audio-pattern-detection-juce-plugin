@@ -25,6 +25,8 @@ public:
     void paint (juce::Graphics&) override;
     void resized() override;
     
+    juce::Label seshLabel;
+    juce::Label titleLabel;
     juce::Label patLabel;
     juce::TextButton confBtn;
 

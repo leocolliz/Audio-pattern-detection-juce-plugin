@@ -17,12 +17,6 @@ Page3::Page3()
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
 
-    modelLabel.setEditable(true);
-    modelLabel.setColour(juce::Label::backgroundColourId, juce::Colours::black);
-    modelLabel.setJustificationType(juce::Justification::centred);
-
-    addAndMakeVisible(modelLabel);
-
     trainBtn.setColour(juce::TextButton::buttonColourId, juce::Colours::maroon);
     trainBtn.setButtonText("TRAIN MODEL");
 
@@ -45,8 +39,8 @@ void Page3::paint (juce::Graphics& g)
     g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));   // clear the background
     auto area = getLocalBounds();
     g.setColour (juce::Colours::white);
-    g.setFont (14.0f);
-    g.drawText ("Enter the model name", area.getCentreX()-150, area.getCentreY()-75, 300, 30, juce::Justification::centred, true);
+    g.setFont (juce::Font("Arial", 18.0f, juce::Font::bold));
+    g.drawText (seshName->toUpperCase(), area.getCentreX()-150, area.getCentreY()-150, 300, 30, juce::Justification::centred, true);
 }
 
 void Page3::resized()
@@ -56,6 +50,5 @@ void Page3::resized()
 
     auto area = getLocalBounds();
 
-    modelLabel.setBounds(area.getCentreX()-80, area.getCentreY()-40, 160, 30);
-    trainBtn.setBounds(area.getCentreX()-60,getHeight()-110,120,30);
+    trainBtn.setBounds(area.getCentreX()-60,area.getCentreY()-15,120,30);
 }

@@ -360,5 +360,5 @@ build/intermediate/Debug/MainComponent_a6ffb4a5.o: \
  /home/leo/UNI/tirocinio/JUCE/modules/juce_osc/osc/juce_OSCBundle.h \
  /home/leo/UNI/tirocinio/JUCE/modules/juce_osc/osc/juce_OSCReceiver.h \
  /home/leo/UNI/tirocinio/JUCE/modules/juce_osc/osc/juce_OSCSender.h \
- ../../Source/Page1.h ../../Source/Page2.h ../../Source/Page3.h \
- ../../Source/Page4.h
+ ../../Source/Page0.h ../../Source/Page1.h ../../Source/Page2.h \
+ ../../Source/Page3.h ../../Source/Page4.h
