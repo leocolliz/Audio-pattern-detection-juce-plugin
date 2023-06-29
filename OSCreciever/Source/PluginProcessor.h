@@ -75,6 +75,7 @@ public:
         juce::MidiMessageSequence* seq;
         int index = 1;
         int* nPattern;
+        juce::String* sessionName;
     };
     recordingThread recThread;
 private:

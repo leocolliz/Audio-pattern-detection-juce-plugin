@@ -8,6 +8,7 @@
 
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
+#include <iostream>
 
 const int CREATEBTN = 1;
 const int ENTERBTN = 2;
@@ -20,6 +21,8 @@ const int TRAINBTN = 31;
 const int STARTBTN = 41;
 const int DELETEBTN = 42;
 
+using namespace juce;
+
 //==============================================================================
 OSCrecieverAudioProcessorEditor::OSCrecieverAudioProcessorEditor (OSCrecieverAudioProcessor& p)
     : AudioProcessorEditor (&p), audioProcessor (p)
@@ -28,6 +31,7 @@ OSCrecieverAudioProcessorEditor::OSCrecieverAudioProcessorEditor (OSCrecieverAud
     // editor's size to whatever you need it to be.
 
     audioProcessor.recThread.nPattern = &(inputNum);
+    audioProcessor.recThread.sessionName = &(sessionName);
 
     if(connect(8000)){
         std::cout << "Connected reciever (PLUGIN)" << std::endl;
@@ -60,7 +64,7 @@ void OSCrecieverAudioProcessorEditor::resized()
 }
 
 void OSCrecieverAudioProcessorEditor::oscMessageReceived(const juce::OSCMessage &message){
-    if(message.size() == 3 && message[1].isInt32()){
+    if(message.size() == 3 && message[0].isInt32()){
         switch(message[0].getInt32()){
             case CREATEBTN:
             {
@@ -92,6 +96,9 @@ void OSCrecieverAudioProcessorEditor::oscMessageReceived(const juce::OSCMessage 
             {
                 sessionName=message[2].getString();
                 inputNum=message[1].getInt32();
+                juce::String dirName = "~/UNI/tirocinio/Audio-pattern-detection-juce-plugin/OSCreciever/" + sessionName;
+                juce::File sessionDir(dirName);
+                sessionDir.createDirectory();
                 auto sessionFile = juce::File::getCurrentWorkingDirectory().getParentDirectory().getParentDirectory().getParentDirectory().getChildFile("metadata.txt");
                 sessionFile.appendText(sessionName + '\n');
                 break;
@@ -126,10 +133,10 @@ void OSCrecieverAudioProcessorEditor::oscMessageReceived(const juce::OSCMessage 
                 if(audioProcessor.recThread.index>0){
                     audioProcessor.recThread.index--;
                 }
-                juce::String fileName = "track";
+                juce::String fileName = "~/UNI/tirocinio/Audio-pattern-detection-juce-plugin/OSCreciever/"+sessionName+"/track";
                 fileName+=audioProcessor.recThread.index;
                 fileName+=".mid";
-                auto midiFile = juce::File::getCurrentWorkingDirectory().getParentDirectory().getParentDirectory().getParentDirectory().getChildFile(fileName);
+                juce::File midiFile(fileName);
                 if(midiFile.deleteFile()){
                     std::cout << fileName << " deleted correctly" << std::endl;
                 }
@@ -138,19 +145,22 @@ void OSCrecieverAudioProcessorEditor::oscMessageReceived(const juce::OSCMessage 
             case SAVEBTN:
             {
                 inputCommand = message[2].getString();    
-                std::cout << "OSC command " << inputCommand << " saved correctly in OSC.txt" << std::endl;
-                auto OSCfile = juce::File::getCurrentWorkingDirectory().getParentDirectory().getParentDirectory().getParentDirectory().getChildFile(sessionName+".txt");
-                if(audioProcessor.recThread.index==1){
-                    OSCfile.replaceWithText(inputCommand+'\n');
-                }else{
-                    OSCfile.appendText(inputCommand+'\n');
-                }
+                juce::String fileName = "~/UNI/tirocinio/Audio-pattern-detection-juce-plugin/OSCreciever/"+sessionName+"/"+sessionName+".txt";
+                juce::File OSCfile(fileName);
+                OSCfile.appendText(inputCommand+'\n');
                 std::cout << "OSC command " << inputCommand << " saved correctly in " << sessionName << ".txt" << std::endl;
                 break;
             }
             case TRAINBTN:
             {
-                //API CALL FOR TRAINING
+                juce::URL url("https://ae4f-193-205-210-74.ngrok-free.app/files/test.onnx/?data=[[1,2,3,4,5],[2,3,4,5,6],[1,2,3,4,5]]");
+                //juce::String fileName = "~/UNI/tirocinio/Audio-pattern-detection-juce-plugin/OSCreciever/"+sessionName+"/test.onnx";
+                juce::String fileName = "~/UNI/tirocinio/Audio-pattern-detection-juce-plugin/OSCreciever/test.onnx";
+                juce::File destFile(fileName);
+                destFile.deleteFile();
+                URL::DownloadTaskOptions opt;
+                url.downloadToFile(destFile, opt.withListener(this));
+                url.launchInDefaultBrowser();
                 break;
             }
             case STARTBTN:
@@ -162,7 +172,7 @@ void OSCrecieverAudioProcessorEditor::oscMessageReceived(const juce::OSCMessage 
             {
                 juce::String sessionToDelete = message[2].getString();
                 juce::StringArray text;
-                auto sessionFile = juce::File::getCurrentWorkingDirectory().getParentDirectory().getParentDirectory().getParentDirectory().getChildFile("sessions.txt");
+                auto sessionFile = juce::File::getCurrentWorkingDirectory().getParentDirectory().getParentDirectory().getParentDirectory().getChildFile("metedata.txt");
                 if(sessionFile.existsAsFile()){
                     juce::FileInputStream inputStream(sessionFile);
                     inputStream.setPosition(0);
@@ -177,9 +187,26 @@ void OSCrecieverAudioProcessorEditor::oscMessageReceived(const juce::OSCMessage 
                         sessionFile.appendText(sesh+'\n');
                     }
                 }
-                //DELETE MODEL FILE
+                juce::String dirName = "~/UNI/tirocinio/Audio-pattern-detection-juce-plugin/OSCreciever/" + sessionName;
+                juce::File sessionDir(dirName);
+                sessionDir.deleteRecursively();
+                std::cout << sessionToDelete << " deleted" << std::endl;
                 break;
             }
         }
+    }
+}
+
+void OSCrecieverAudioProcessorEditor::finished(juce::URL::DownloadTask* task, bool success){
+    juce::OSCMessage mex("/data");
+    if(success){
+        std::cout << "The model has been trained" << std::endl;
+        mex.addInt32(200);
+    }else{
+        std::cerr << "Model training failed" << std::endl;
+        mex.addInt32(404);
+    }
+    if(!sender.send(mex)){
+        std::cout << "Cannot send the message" << std::endl;
     }
 }

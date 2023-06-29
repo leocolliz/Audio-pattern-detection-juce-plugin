@@ -211,15 +211,16 @@ void OSCrecieverAudioProcessor::recordingThread::record(){
         pattern.setTicksPerQuarterNote(96);
         //pattern.setSmpteTimeFormat(25,40);
         
-        juce::String fileName = "track";
+        juce::String fileName = "~/UNI/tirocinio/Audio-pattern-detection-juce-plugin/OSCreciever/"+*(sessionName)+"/track";
         fileName+=index;
         fileName+=".mid";
 
-        auto midiFile = File::getCurrentWorkingDirectory().getParentDirectory().getParentDirectory().getParentDirectory().getChildFile(fileName);
+        juce::File midiFile(fileName);
+        midiFile.create();
         FileOutputStream stream(midiFile);
 
         if(stream.openedOk()){
-                std::cout << fileName << " opened correctly" << std::endl;
+                std::cout << "Track" << index  << ".mid " << " opened correctly" << std::endl;
         }
         
         stream.setPosition(0);
@@ -247,7 +248,7 @@ void OSCrecieverAudioProcessor::recordingThread::record(){
         if(stream.getStatus().failed()){
             DBG ("An error occurred in the FileOutputStream");
         }else{
-            std::cout << fileName << " saved" << std::endl << "If you want to delete it press UNDO" << std::endl;
+            std::cout << "Track" << index  << ".mid " << " saved" << std::endl << "If you want to delete it press UNDO" << std::endl;
         }
 
         seq->clear();

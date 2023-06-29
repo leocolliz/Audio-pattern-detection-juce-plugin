@@ -6,7 +6,7 @@ MainComponent::MainComponent()
 {
     if( sender.connect("127.0.0.1", 8000)){
         std::cout << "Connected sender GUI" << std::endl;
-    }   
+    }
 
     if(connect(9000)){
         std::cout << "Connected reciever GUI" << std::endl;
@@ -63,7 +63,7 @@ MainComponent::MainComponent()
     startButton->addListener(this);
     deleteButton->addListener(this);
     
-    addAndMakeVisible(p0);
+    addAndMakeVisible(p0.p1.p2.p3);
     setSize (400, 300);
 }
 
@@ -164,6 +164,7 @@ void MainComponent::buttonClicked (juce::Button * button)
             std::cout << "Cannot send the message" << std::endl;
         }
 
+        recButton->setEnabled(false);
         stopButton->setEnabled(true);
         undoButton->setEnabled(false);
         saveButton->setEnabled(false);
@@ -179,15 +180,15 @@ void MainComponent::buttonClicked (juce::Button * button)
         if(!sender.send(mex)){
             std::cout << "Cannot send the message" << std::endl;
         }
-
-        if(emptyTrack){      
+        sleep(1);
+        if(!emptyTrack){                        
             addAndMakeVisible(OSClabel);
             addAndMakeVisible(saveButton);
             undoButton->setEnabled(true);
             saveButton->setEnabled(true);
             recButton->setEnabled(false);
             stopButton->setEnabled(false);
-            emptyTrack=false; 
+            inputNum--;
         }else{
             std::cerr << "Empty track recorded!" << std::endl;
         }
@@ -226,6 +227,8 @@ void MainComponent::buttonClicked (juce::Button * button)
             
         }else{
             std::cerr << "Empty OSC command" << std::endl;
+        }if(inputNum==0){
+            addAndMakeVisible(p0.p1.p2.p3);
         }
     }
 
@@ -236,10 +239,6 @@ void MainComponent::buttonClicked (juce::Button * button)
             std::cout << "Cannot send the message" << std::endl;
         }
         trainButton->setEnabled(false);
-        sleep(5);
-        p0.p1.p2.p3.setVisible(false);
-        p0.p1.p2.setVisible(false);
-        p0.p1.setVisible(false);
     }
 
     //PAGE 4 BUTTONS
@@ -270,6 +269,14 @@ void MainComponent::oscMessageReceived(const juce::OSCMessage &message){
         }if(message[0].getInt32()==1){
             juce::MessageManagerLock mml;
             p0.p4.setVisible(false);
+        }if(message[0].getInt32()==200){
+            std::cout << "Trained model downloaded" << std::endl;
+        }if(message[0].getInt32()==404){
+            std::cout << "Download failed" << std::endl;
+            juce::MessageManagerLock mml;
+            p0.p1.p2.p3.setVisible(false);
+            p0.p1.p2.setVisible(false);
+            p0.p1.setVisible(false);
         }
     }if(message[0].isString()){
         int i = 0;

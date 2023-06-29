@@ -38,7 +38,8 @@ public:
     juce::Label* OSClabel;
     juce::TextButton* saveButton;
     juce::String inputCommand;
-    bool startRec;
+    bool startRec = false;
+    bool emptyTrack = false;
 
     //Page 3
     juce::TextButton* trainButton;
@@ -53,7 +54,6 @@ public:
     void comboBoxChanged(juce::ComboBox* comboBoxThatHasChanged) override;
 
     juce::OSCSender sender;
-    bool emptyTrack = false;
 
     void oscMessageReceived (const juce::OSCMessage &message) override;
 private:

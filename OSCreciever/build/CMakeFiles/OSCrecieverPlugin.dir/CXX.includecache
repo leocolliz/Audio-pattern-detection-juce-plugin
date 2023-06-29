@@ -2539,6 +2539,8 @@ PluginProcessor.h
 /home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/OSCreciever/Source/PluginProcessor.h
 PluginEditor.h
 /home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/OSCreciever/Source/PluginEditor.h
+iostream
+-
 
 /home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/OSCreciever/Source/PluginEditor.h
 JuceHeader.h

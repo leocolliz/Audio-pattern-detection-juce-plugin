@@ -78,6 +78,6 @@ void Page2::resized()
     stopBtn.setCentrePosition(getWidth()/10+30,getHeight()/6+80);
     undoBtn.setBounds(getWidth()-105,getHeight()/6+40,80,30);
     OSCcommandLabel.setBounds(area.getCentreX()-80, getHeight()-85, 160, 30);
-    saveBtn.setBounds(area.getCentreX()-40,getHeight()-25,80,30);
+    saveBtn.setBounds(area.getCentreX()-40,getHeight()-45,80,30);
     p3.setBounds(area);
 }
