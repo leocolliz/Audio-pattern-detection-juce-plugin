@@ -63,7 +63,7 @@ MainComponent::MainComponent()
     startButton->addListener(this);
     deleteButton->addListener(this);
     
-    addAndMakeVisible(p0.p1.p2.p3);
+    addAndMakeVisible(p0);
     setSize (400, 300);
 }
 

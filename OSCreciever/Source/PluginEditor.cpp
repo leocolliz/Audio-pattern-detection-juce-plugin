@@ -9,6 +9,7 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 #include <iostream>
+#include <string.h>
 
 const int CREATEBTN = 1;
 const int ENTERBTN = 2;
@@ -153,14 +154,20 @@ void OSCrecieverAudioProcessorEditor::oscMessageReceived(const juce::OSCMessage 
             }
             case TRAINBTN:
             {
-                juce::URL url("https://ae4f-193-205-210-74.ngrok-free.app/files/test.onnx/?data=[[1,2,3,4,5],[2,3,4,5,6],[1,2,3,4,5]]");
-                //juce::String fileName = "~/UNI/tirocinio/Audio-pattern-detection-juce-plugin/OSCreciever/"+sessionName+"/test.onnx";
-                juce::String fileName = "~/UNI/tirocinio/Audio-pattern-detection-juce-plugin/OSCreciever/test.onnx";
+                /*juce::URL url("https://ae4f-193-205-210-74.ngrok-free.app/files/test.onnx/?data=[[1,2,3,4,5],[2,3,4,5,6],[1,2,3,4,5]]");
+                juce::String fileName = "~/UNI/tirocinio/Audio-pattern-detection-juce-plugin/OSCreciever/"+sessionName+"/test.onnx";
+                //juce::String fileName = "~/UNI/tirocinio/Audio-pattern-detection-juce-plugin/OSCreciever/test.onnx";
                 juce::File destFile(fileName);
                 destFile.deleteFile();
                 URL::DownloadTaskOptions opt;
                 url.downloadToFile(destFile, opt.withListener(this));
-                url.launchInDefaultBrowser();
+                //url.launchInDefaultBrowser();*/
+                
+                juce::String fileName = "~/UNI/tirocinio/Audio-pattern-detection-juce-plugin/OSCreciever/"+sessionName+"/" + sessionName + ".onnx";
+                juce::String command = "curl -g -o " + fileName + " https://a895307b697c-9003014567992963579.ngrok-free.app/files/" + sessionName + ".onnx/?data=[[1,2,3,4,5],[2,3,4,5,6],[1,2,3,4,5]]";
+                const char* com = static_cast<const char*>(command.toUTF8());
+                system(com);
+                
                 break;
             }
             case STARTBTN:
@@ -197,7 +204,7 @@ void OSCrecieverAudioProcessorEditor::oscMessageReceived(const juce::OSCMessage 
     }
 }
 
-void OSCrecieverAudioProcessorEditor::finished(juce::URL::DownloadTask* task, bool success){
+/*void OSCrecieverAudioProcessorEditor::finished(juce::URL::DownloadTask* task, bool success){
     juce::OSCMessage mex("/data");
     if(success){
         std::cout << "The model has been trained" << std::endl;
@@ -209,4 +216,4 @@ void OSCrecieverAudioProcessorEditor::finished(juce::URL::DownloadTask* task, bo
     if(!sender.send(mex)){
         std::cout << "Cannot send the message" << std::endl;
     }
-}
+}*/
