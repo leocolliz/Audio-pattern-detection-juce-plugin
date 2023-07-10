@@ -10,17 +10,16 @@
 #include "PluginEditor.h"
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 
-#include </usr/local/lib/onnxruntime-linux-x64-1.15.0/include/onnxruntime_cxx_api.h>
+//#include </usr/local/lib/onnxruntime-linux-x64-1.15.0/include/onnxruntime_cxx_api.h>
 
 using namespace juce;
 
 float currNote = 0;
 float ptcBnd = 0;
 float tmpNote = 0;
-const int buffer_len = 10;
-
-std::vector <float> noteBuffer(buffer_len);
+const int buffer_len = 50;
 
 //==============================================================================
 OSCrecieverAudioProcessor::OSCrecieverAudioProcessor()
@@ -35,10 +34,13 @@ OSCrecieverAudioProcessor::OSCrecieverAudioProcessor()
                        )
 #endif
 {
+    bcgThread.noteBuffer.reserve(50);
+    bcgThread.noteBuffer.clear();
 }
 
 OSCrecieverAudioProcessor::~OSCrecieverAudioProcessor()
 {
+    bcgThread.stopThread(10);
     recThread.stopThread(10);
 }
 
@@ -109,7 +111,6 @@ void OSCrecieverAudioProcessor::prepareToPlay (double sampleRate, int samplesPer
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
-    Ort::AllocatorWithDefaultOptions ort_alloc;
     mms.clear();
 }
 
@@ -151,19 +152,20 @@ void OSCrecieverAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, 
         auto midiEvent = midiMessage.getMessage();
         auto note = midiEvent.getNoteNumber();
 
-        if (midiEvent.isNoteOn()) {
+        if(startRec){
+            if (midiEvent.isNoteOn()) {
             tmpNote = midiEvent.getNoteNumber();
             currNote = tmpNote;
-        }
-        if (midiEvent.isPitchWheel()&&tmpNote!=0) {
-            ptcBnd = midiEvent.getPitchWheelValue();
-            currNote = tmpNote + (ptcBnd-8192)/(8192/2);
-        }
-        if (midiEvent.isNoteOff()) {
-            tmpNote = 0;
-            currNote = 1;
-        }
-        if(startRec){
+            }
+            if (midiEvent.isPitchWheel()&&tmpNote!=0) {
+                ptcBnd = midiEvent.getPitchWheelValue();
+                currNote = tmpNote + (ptcBnd-8192)/(8192/2);
+            }
+            if (midiEvent.isNoteOff()) {
+                tmpNote = 0;
+                currNote = 1;
+            }
+            
             midiTime+=midiEvent.getTimeStamp();
             midiEvent.setTimeStamp(midiTime);
             std::cout << midiEvent.getDescription() << " " << midiEvent.getTimeStamp() << std::endl;
@@ -253,5 +255,21 @@ void OSCrecieverAudioProcessor::recordingThread::record(){
 
         seq->clear();
         index++;
+    }
+}
+
+void OSCrecieverAudioProcessor::backgroundThread::checkNotes() {
+    while (34) {
+        sleep(30);
+        if (noteBuffer.size() == buffer_len){
+            noteBuffer.erase(noteBuffer.begin());
+            //noteBuffer.assign(noteBuffer.begin() + 1, noteBuffer.end());
+        }
+        noteBuffer.push_back(currNote);
+        if (noteBuffer.size() == buffer_len-1){
+            DBG("READY SET GO!!!");
+            //dummyClass::function(noteBuffer);
+            //DBG(currNote);
+        }   
     }
 }

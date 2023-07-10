@@ -115,7 +115,9 @@ void MainComponent::buttonClicked (juce::Button * button)
     //PAGE 0 BUTTONS
     if(button==createButton){
         addAndMakeVisible(p0.p1);
-
+        for(auto ip : juce::IPAddress::getAllAddresses()){
+            std::cout << ip.toString() << std::endl;
+        }
         if(!sender.send(mex)){
             std::cout << "Cannot send the message" << std::endl;
         }
@@ -238,7 +240,6 @@ void MainComponent::buttonClicked (juce::Button * button)
         if(!sender.send(mex)){
             std::cout << "Cannot send the message" << std::endl;
         }
-        trainButton->setEnabled(false);
     }
 
     //PAGE 4 BUTTONS

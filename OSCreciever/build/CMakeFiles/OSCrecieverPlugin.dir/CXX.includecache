@@ -2543,6 +2543,8 @@ iostream
 -
 string.h
 -
+vector
+-
 
 /home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/OSCreciever/Source/PluginEditor.h
 JuceHeader.h

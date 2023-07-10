@@ -57,10 +57,20 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
 
     //------------------------------------------------------------------------------
-    int sequencePositionCounter = 0;
     int midiTime = 0;
     juce::MidiMessageSequence mms;
     bool startRec = false;
+    class backgroundThread : public juce::Thread {
+    public:
+        std::vector <float> noteBuffer; 
+        backgroundThread() : juce::Thread("BCG thread"){
+        }
+        void run() override {
+            checkNotes();
+        }
+        void checkNotes();
+    };
+    backgroundThread bcgThread;
     class recordingThread : public juce::Thread {
     public:
         recordingThread() : juce::Thread("Recording Thread"){

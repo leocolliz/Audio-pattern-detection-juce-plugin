@@ -14,7 +14,7 @@
 //==============================================================================
 /**
 */
-class OSCrecieverAudioProcessorEditor  : public juce::AudioProcessorEditor, public juce::OSCReceiver, public juce::OSCReceiver::ListenerWithOSCAddress<juce::OSCReceiver::RealtimeCallback>//, public juce::URL::DownloadTaskListener
+class OSCrecieverAudioProcessorEditor  : public juce::AudioProcessorEditor, public juce::OSCReceiver, public juce::OSCReceiver::ListenerWithOSCAddress<juce::OSCReceiver::RealtimeCallback>
 {
 public:
     OSCrecieverAudioProcessorEditor (OSCrecieverAudioProcessor&);
@@ -24,8 +24,6 @@ public:
     void paint (juce::Graphics&) override;
     void resized() override;
 
-    String getResultText (const URL& url);
-
 private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
@@ -34,9 +32,9 @@ private:
     juce::String sessionName;
     int inputNum;
     juce::String inputCommand;
+    juce::String trainCommand;
 
-    void oscMessageReceived (const juce::OSCMessage &message) override;
-    //void finished (juce::URL::DownloadTask* task, bool success) override; 	
+    void oscMessageReceived (const juce::OSCMessage &message) override; 	
     juce::OSCSender sender;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (OSCrecieverAudioProcessorEditor)

@@ -11414,7 +11414,4 @@ CMakeFiles/OSCrecieverPlugin.dir/Source/PluginProcessor.cpp.o
  /home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/OSCreciever/Source/PluginEditor.h
  /home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/OSCreciever/Source/PluginProcessor.cpp
  /home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/OSCreciever/Source/PluginProcessor.h
- /usr/local/lib/onnxruntime-linux-x64-1.15.0/include/onnxruntime_c_api.h
- /usr/local/lib/onnxruntime-linux-x64-1.15.0/include/onnxruntime_cxx_api.h
- /usr/local/lib/onnxruntime-linux-x64-1.15.0/include/onnxruntime_cxx_inline.h
  OSCrecieverPlugin_artefacts/JuceLibraryCode/JuceHeader.h

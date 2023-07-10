@@ -10,6 +10,7 @@
 #include "PluginEditor.h"
 #include <iostream>
 #include <string.h>
+#include <vector>
 
 const int CREATEBTN = 1;
 const int ENTERBTN = 2;
@@ -74,7 +75,9 @@ void OSCrecieverAudioProcessorEditor::oscMessageReceived(const juce::OSCMessage 
             case ENTERBTN:
             {
                 juce::OSCMessage mex("/data");
-                auto sessionFile = juce::File::getCurrentWorkingDirectory().getParentDirectory().getParentDirectory().getParentDirectory().getChildFile("metadata.txt");
+                //juce::String fileName = "/home/mind/myPlugin/metadata.txt";
+                juce::String fileName = "~/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/OSCreciever/metadata.txt";
+                juce::File sessionFile(fileName);
                 if(sessionFile.existsAsFile()){
                     juce::FileInputStream inputStream(sessionFile);
                     inputStream.setPosition(0);
@@ -90,6 +93,8 @@ void OSCrecieverAudioProcessorEditor::oscMessageReceived(const juce::OSCMessage 
                     if(!sender.send(mex)){
                         std::cout << "Cannot send the message" << std::endl;
                     }
+                }else{
+                    std::cout << "non esiste" << std::endl;
                 }
                 break;
             }
@@ -97,17 +102,28 @@ void OSCrecieverAudioProcessorEditor::oscMessageReceived(const juce::OSCMessage 
             {
                 sessionName=message[2].getString();
                 inputNum=message[1].getInt32();
-                juce::String dirName = "~/UNI/tirocinio/Audio-pattern-detection-juce-plugin/OSCreciever/" + sessionName;
+
+                //juce::String dirName = "/home/mind/myPlugin/" + sessionName;
+                juce::String dirName = "/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/OSCreciever/" + sessionName;
                 juce::File sessionDir(dirName);
                 sessionDir.createDirectory();
-                auto sessionFile = juce::File::getCurrentWorkingDirectory().getParentDirectory().getParentDirectory().getParentDirectory().getChildFile("metadata.txt");
+
+                //juce::String fileName = "/home/mind/myPlugin/metadata.txt";
+                juce::String fileName = "/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/OSCreciever/metadata.txt";
+                juce::File sessionFile(fileName);
                 sessionFile.appendText(sessionName + '\n');
+
+                trainCommand = "curl -g -o  /home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/OSCreciever/" + sessionName+ "/" + sessionName + ".onnx" + " https://a895307b697c-9003014567992963579.ngrok-free.app/files/" + sessionName + ".onnx/?data=[[";
+                //trainCommand = "curl -g -o  /home/mind/myPlugin/" + sessionName+ "/" + sessionName + ".onnx" + " https://a895307b697c-9003014567992963579.ngrok-free.app/files/" + sessionName + ".onnx/?data=[[";
                 break;
             }
             case RECORDBTN:
             {   
-                audioProcessor.sequencePositionCounter = 0;
-                audioProcessor.startRec=true;
+                if(audioProcessor.bcgThread.isThreadRunning()){
+                    audioProcessor.bcgThread.run();
+                }else{
+                    audioProcessor.bcgThread.startThread();
+                }audioProcessor.startRec=true;
                 break;
             }
             case STOPBTN:
@@ -127,6 +143,19 @@ void OSCrecieverAudioProcessorEditor::oscMessageReceived(const juce::OSCMessage 
                     }
                     std::cerr << "Empty track recorded!" << std::endl;
                 }
+
+                for(auto item : audioProcessor.bcgThread.noteBuffer){
+                    trainCommand += juce::String(item);
+                    //std::cout << item << "--";
+                    trainCommand += ",";
+                }
+                trainCommand = trainCommand.upToLastOccurrenceOf(",",false,true);
+                trainCommand += "]";
+                //std::cout << std::endl;
+                if(audioProcessor.recThread.index<inputNum){
+                    trainCommand += ",";
+                }
+
                 break;
             }
             case UNDOBTN:
@@ -134,19 +163,22 @@ void OSCrecieverAudioProcessorEditor::oscMessageReceived(const juce::OSCMessage 
                 if(audioProcessor.recThread.index>0){
                     audioProcessor.recThread.index--;
                 }
-                juce::String fileName = "~/UNI/tirocinio/Audio-pattern-detection-juce-plugin/OSCreciever/"+sessionName+"/track";
+                //juce::String fileName = "/home/mind/myPlugin/"+sessionName+"/track";
+                juce::String fileName = "/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/OSCreciever/"+sessionName+"/track";
                 fileName+=audioProcessor.recThread.index;
                 fileName+=".mid";
                 juce::File midiFile(fileName);
                 if(midiFile.deleteFile()){
                     std::cout << fileName << " deleted correctly" << std::endl;
                 }
+                trainCommand = trainCommand.upToLastOccurrenceOf("[",false,true);
                 break;
             }
             case SAVEBTN:
             {
                 inputCommand = message[2].getString();    
-                juce::String fileName = "~/UNI/tirocinio/Audio-pattern-detection-juce-plugin/OSCreciever/"+sessionName+"/"+sessionName+".txt";
+                //juce::String fileName = "/home/mind/myPlugin/"+sessionName+"/"+sessionName+".txt";
+                juce::String fileName = "/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/OSCreciever/"+sessionName+"/"+sessionName+".txt";
                 juce::File OSCfile(fileName);
                 OSCfile.appendText(inputCommand+'\n');
                 std::cout << "OSC command " << inputCommand << " saved correctly in " << sessionName << ".txt" << std::endl;
@@ -154,19 +186,11 @@ void OSCrecieverAudioProcessorEditor::oscMessageReceived(const juce::OSCMessage 
             }
             case TRAINBTN:
             {
-                /*juce::URL url("https://ae4f-193-205-210-74.ngrok-free.app/files/test.onnx/?data=[[1,2,3,4,5],[2,3,4,5,6],[1,2,3,4,5]]");
-                juce::String fileName = "~/UNI/tirocinio/Audio-pattern-detection-juce-plugin/OSCreciever/"+sessionName+"/test.onnx";
-                //juce::String fileName = "~/UNI/tirocinio/Audio-pattern-detection-juce-plugin/OSCreciever/test.onnx";
-                juce::File destFile(fileName);
-                destFile.deleteFile();
-                URL::DownloadTaskOptions opt;
-                url.downloadToFile(destFile, opt.withListener(this));
-                //url.launchInDefaultBrowser();*/
-                
-                juce::String fileName = "~/UNI/tirocinio/Audio-pattern-detection-juce-plugin/OSCreciever/"+sessionName+"/" + sessionName + ".onnx";
-                juce::String command = "curl -g -o " + fileName + " https://a895307b697c-9003014567992963579.ngrok-free.app/files/" + sessionName + ".onnx/?data=[[1,2,3,4,5],[2,3,4,5,6],[1,2,3,4,5]]";
-                const char* com = static_cast<const char*>(command.toUTF8());
+                trainCommand+="]";
+                std::cout << trainCommand << std::endl;
+                const char* com = static_cast<const char*>(trainCommand.toUTF8());
                 system(com);
+                trainCommand.clear();
                 
                 break;
             }
@@ -179,7 +203,8 @@ void OSCrecieverAudioProcessorEditor::oscMessageReceived(const juce::OSCMessage 
             {
                 juce::String sessionToDelete = message[2].getString();
                 juce::StringArray text;
-                auto sessionFile = juce::File::getCurrentWorkingDirectory().getParentDirectory().getParentDirectory().getParentDirectory().getChildFile("metedata.txt");
+                juce::String fileName = "/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/OSCreciever/metadata.txt";
+                juce::File sessionFile(fileName);
                 if(sessionFile.existsAsFile()){
                     juce::FileInputStream inputStream(sessionFile);
                     inputStream.setPosition(0);
@@ -194,7 +219,8 @@ void OSCrecieverAudioProcessorEditor::oscMessageReceived(const juce::OSCMessage 
                         sessionFile.appendText(sesh+'\n');
                     }
                 }
-                juce::String dirName = "~/UNI/tirocinio/Audio-pattern-detection-juce-plugin/OSCreciever/" + sessionName;
+                //juce::String dirName = "/home/mind/myPlugin/" + sessionName;
+                juce::String dirName = "/home/leo/UNI/tirocinio/Audio-pattern-detection-juce-plugin/OSCreciever/" + sessionName;
                 juce::File sessionDir(dirName);
                 sessionDir.deleteRecursively();
                 std::cout << sessionToDelete << " deleted" << std::endl;
@@ -203,17 +229,3 @@ void OSCrecieverAudioProcessorEditor::oscMessageReceived(const juce::OSCMessage 
         }
     }
 }
-
-/*void OSCrecieverAudioProcessorEditor::finished(juce::URL::DownloadTask* task, bool success){
-    juce::OSCMessage mex("/data");
-    if(success){
-        std::cout << "The model has been trained" << std::endl;
-        mex.addInt32(200);
-    }else{
-        std::cerr << "Model training failed" << std::endl;
-        mex.addInt32(404);
-    }
-    if(!sender.send(mex)){
-        std::cout << "Cannot send the message" << std::endl;
-    }
-}*/
