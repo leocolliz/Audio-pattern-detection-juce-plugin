@@ -1,22 +1,27 @@
 /*
- * This file contains the basic framework code for a JUCE plugin that uses the ONNX runtime for deep inference.
+  ==============================================================================
+
+    This file contains the basic framework code for a JUCE plugin processor.
+
+  ==============================================================================
 */
 
 #pragma once
 
 #include <JuceHeader.h>
 
-#include "OnnxWrapper.h" // Put your ONNX code here
-
 //==============================================================================
 /**
 */
-class OnnxTemplatePluginAudioProcessor  : public juce::AudioProcessor
+class OSCrecieverAudioProcessor  : public juce::AudioProcessor
+                            #if JucePlugin_Enable_ARA
+                             , public juce::AudioProcessorARAExtension
+                            #endif
 {
 public:
     //==============================================================================
-    OnnxTemplatePluginAudioProcessor();
-    ~OnnxTemplatePluginAudioProcessor() override;
+    OSCrecieverAudioProcessor();
+    ~OSCrecieverAudioProcessor() override;
 
     //==============================================================================
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
@@ -51,7 +56,43 @@ public:
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
+    //------------------------------------------------------------------------------
+    int midiTime = 0;
+    juce::MidiMessageSequence mms;
+    bool startRec = false;
+
+    class recordingThread : public juce::Thread {
+    public:
+        recordingThread() : juce::Thread("Recording Thread"){
+        }
+        void run() override {
+            record();
+        }
+        void record();
+        void addMMS(juce::MidiMessageSequence &m){
+          seq = &m;
+        }
+        std::vector <float> patternBuffer;
+        juce::MidiMessageSequence* seq;
+        int index = 1;
+        int* nPattern;
+        juce::String* sessionName;
+    };
+    recordingThread recThread;
+
+    class backgroundThread : public juce::Thread {
+    public:
+        std::vector <float> noteBuffer; 
+        backgroundThread() : juce::Thread("BCG thread"), noteBuffer(50){
+        }
+        void run() override {
+            checkNotes();
+        }
+        void checkNotes();
+    };
+    backgroundThread bcgThread;
+    
 private:
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (OnnxTemplatePluginAudioProcessor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (OSCrecieverAudioProcessor)
 };
