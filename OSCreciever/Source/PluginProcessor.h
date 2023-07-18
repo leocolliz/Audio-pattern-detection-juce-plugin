@@ -13,7 +13,7 @@
 //==============================================================================
 /**
 */
-class OSCrecieverAudioProcessor  : public juce::AudioProcessor
+class OSCrecieverAudioProcessor  : public juce::AudioProcessor, public juce::OSCReceiver, public juce::OSCReceiver::ListenerWithOSCAddress<juce::OSCReceiver::RealtimeCallback>
                             #if JucePlugin_Enable_ARA
                              , public juce::AudioProcessorARAExtension
                             #endif
@@ -57,6 +57,7 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
 
     //------------------------------------------------------------------------------
+
     int midiTime = 0;
     juce::MidiMessageSequence mms;
     bool startRec = false;
@@ -75,8 +76,8 @@ public:
         std::vector <float> patternBuffer;
         juce::MidiMessageSequence* seq;
         int index = 1;
-        int* nPattern;
-        juce::String* sessionName;
+        int nPattern;
+        juce::String sessionName;
     };
     recordingThread recThread;
 
@@ -91,6 +92,12 @@ public:
         void checkNotes();
     };
     backgroundThread bcgThread;
+
+    juce::String inputCommand;
+    juce::String trainCommand;
+
+    void oscMessageReceived (const juce::OSCMessage &message) override; 	
+    juce::OSCSender sender;
     
 private:
     //==============================================================================

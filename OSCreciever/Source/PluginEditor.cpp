@@ -32,11 +32,8 @@ OSCrecieverAudioProcessorEditor::OSCrecieverAudioProcessorEditor (OSCrecieverAud
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
 
-    audioProcessor.recThread.nPattern = &(inputNum);
-    audioProcessor.recThread.sessionName = &(sessionName);
-
-    std::cout << "CIAO" << std::endl;
-    DBG("DEBUG");
+    //audioProcessor.recThread.nPattern = &(inputNum);
+    //audioProcessor.recThread.sessionName = &(sessionName);
 
     if(connect(8000)){
         std::cout << "Connected reciever (PLUGIN)" << std::endl;
