@@ -127,7 +127,19 @@ void OSCrecieverAudioProcessor::prepareToPlay (double sampleRate, int samplesPer
         std::cout << "Connected reciever (PLUGIN)" << std::endl;
     }
 
-    if(sender.connect("127.0.0.1", 9000)){
+    juce::IPAddress ip;
+    static juce::Array<juce::IPAddress> list;
+
+    list = ip.getAllAddresses();
+
+    for(auto item : list){
+        std::cout << item.toString() << std::endl;
+    }
+
+    int i;
+    std::cin >> i;
+
+    if(sender.connect(list[i].toString(), 9000)){
         std::cout << "Connected sender (PLUGIN)" << std::endl;
     }
 
